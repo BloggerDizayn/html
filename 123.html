@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Adding comment count links to your home page | Disqus</title>
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans+Condensed');
+body {font-family:'Fira Sans Condensed', sans-serif;-webkit-font-smoothing: antialiased;margin: 0 auto 0 auto}
+a{}
+</style>
+</head>
+<body>
+<article class='post'>
+<div id="disqus_thread">
+<button id="diqus_loader" onclick="load_disqus('bloggerdizayn')">Post a Comment</button>
+</div>
+</article>
+<script>
+/**
+ * Disqus loader which verifies the existence of `#disqus_thread` on 
+ * the web page and then prepares the disqus embed script to hook in 
+ * the document
+ */
+function load_disqus( disqus_shortname ) {
+  // Prepare the trigger and target
+  var disqus_trigger = jQuery('#disqus_trigger'),
+      disqus_target = jQuery('#disqus_thread');
+
+  // Load script asynchronously only when the trigger and target exist
+  if(disqus_target && disqus_trigger) {
+    jQuery.ajaxSetup({ cache:true });
+    jQuery.getScript('//' + disqus_shortname + '.disqus.com/embed.js');
+    jQuery.ajaxSetup({ cache:false });
+    disqus_trigger.remove();
+    console.log('Disqus loaded.');
+  }
+}
+</script>
+</body>
+</html>
